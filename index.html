@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raycast Glass AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="atmosphere nebula-glow"></div>
+    <div class="atmosphere violet-haze"></div>
+
+    <div id="app-container">
+        <!-- Sidebar -->
+        <aside class="glass-panel sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FF6363"/>
+                    </svg>
+                    <span>Raycast AI</span>
+                </div>
+                <button class="new-chat-btn" id="new-chat">
+                    <i data-lucide="plus"></i> New Chat
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <label>Recent Chats</label>
+                    <div id="chat-history" class="history-list">
+                        <!-- History items -->
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button id="auth-trigger" class="user-profile">
+                    <div class="avatar">U</div>
+                    <span id="user-name">Guest</span>
+                </button>
+                <button id="settings-trigger" class="icon-btn">
+                    <i data-lucide="settings"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="current-chat-title">Untitled Chat</div>
+                <div class="model-badge" id="model-indicator">
+                    <i data-lucide="zap"></i> mistral-7b
+                </div>
+            </header>
+
+            <div id="chat-container">
+                <div class="welcome-screen">
+                    <h1>What can I create for you?</h1>
+                    <div class="quick-actions">
+                        <button class="action-card" onclick="setInput('Create an expense report for June')">
+                            <i data-lucide="table"></i>
+                            <span>Create Expense Report</span>
+                        </button>
+                        <button class="action-card" onclick="setInput('Analyze this Excel file')">
+                            <i data-lucide="file-text"></i>
+                            <span>Analyze Excel</span>
+                        </button>
+                        <button class="action-card" onclick="setInput('Help me with a Python script')">
+                            <i data-lucide="code"></i>
+                            <span>Python Scripting</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="glass-panel input-box">
+                    <label for="file-upload" class="upload-btn">
+                        <i data-lucide="paperclip"></i>
+                        <input type="file" id="file-upload" hidden>
+                    </label>
+                    <textarea id="user-input" placeholder="Message Raycast..." rows="1"></textarea>
+                    <button id="send-btn" class="send-btn">
+                        <i data-lucide="arrow-up"></i>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    Raycast AI can make mistakes. Check important info.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="glass-panel modal-content">
+            <div class="modal-header">
+                <h2 id="auth-title">Login</h2>
+                <button class="close-modal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="auth-form">
+                <input type="email" id="auth-email" placeholder="Email address">
+                <input type="password" id="auth-password" placeholder="Password">
+                <button id="auth-submit" class="primary-btn">Continue</button>
+                <p class="auth-toggle">Don't have an account? <span id="toggle-auth">Sign up</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
